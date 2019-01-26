@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'moviesloansapp'
+    'movieloanapp'
 ]
 
 MIDDLEWARE = [
@@ -68,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'moviesloanapp342.wsgi.application'
+WSGI_APPLICATION = 'moviespot.wsgi.application'
 
 
 # Database
