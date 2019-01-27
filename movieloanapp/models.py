@@ -1,3 +1,4 @@
+from django.core.validators import MinValueValidator
 from django.db import models
 
 
@@ -8,8 +9,11 @@ class Movie(models.Model):
 	cover = models.FileField(upload_to='covers')
 	year = models.IntegerField(default=0)
 	country = models.CharField(default='', max_length=50)
-	in_stock_qty = models.IntegerField(default=0, verbose_name="In stock quantity")
-	borrow_price = models.FloatField()
+	in_stock_qty = models.DecimalField(default=0, verbose_name="In stock quantity",validators=[MinValueValidator(0)])
+	borrow_price = models.FloatField(validators=[MinValueValidator(0)])
+	
+	def __str__(self):
+		return self.title
 
 
 class Customer(models.Model):
@@ -24,5 +28,5 @@ class Customer(models.Model):
 class BorrowOrder(models.Model):
 	movie = models.ForeignKey(Movie, related_name='loans', on_delete=models.CASCADE)
 	customer = models.ForeignKey(Customer, related_name='customers', on_delete=models.CASCADE)
-	created_date = models.DateField(auto_now=True, editable=False)
+	created_date = models.DateField(auto_now_add=True, editable=False)
 	due_date = models.DateTimeField(blank=False)
