@@ -9,7 +9,7 @@ class Movie(models.Model):
 	cover = models.FileField(upload_to='covers')
 	year = models.IntegerField(default=0)
 	country = models.CharField(default='', max_length=50)
-	in_stock_qty = models.DecimalField(default=0, verbose_name="In stock quantity",validators=[MinValueValidator(0)])
+	in_stock_qty = models.IntegerField(default=0, verbose_name="In stock quantity",validators=[MinValueValidator(0)])
 	borrow_price = models.FloatField(validators=[MinValueValidator(0)])
 	
 	def __str__(self):
@@ -22,11 +22,18 @@ class Customer(models.Model):
 	address = models.CharField(max_length=50, blank=False)
 	phone = models.CharField(max_length=50, blank=False)
 	gender = models.CharField(max_length=1)
-	email = models.EmailField()
+	email = models.EmailField(unique=True)
+
+	def __str__(self):
+		return self.email
 
 
-class BorrowOrder(models.Model):
-	movie = models.ForeignKey(Movie, related_name='loans', on_delete=models.CASCADE)
-	customer = models.ForeignKey(Customer, related_name='customers', on_delete=models.CASCADE)
+class Rental(models.Model):
+	movie = models.ForeignKey(Movie, related_name='loans', on_delete=models.CASCADE, blank=False)
+	client = models.ForeignKey(Customer, related_name='clients', on_delete=models.CASCADE, blank=False)
 	created_date = models.DateField(auto_now_add=True, editable=False)
 	due_date = models.DateTimeField(blank=False)
+	status = models.CharField(default='RENTED', max_length=10)
+
+	def __str__(self):
+		return self.client.email + ' rented ' + self.movie.title
