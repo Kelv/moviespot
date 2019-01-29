@@ -1,4 +1,4 @@
-"""moviesloanapp342 URL Configuration
+"""moviesloanapp URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.1/topics/http/urls/
@@ -18,6 +18,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from django.views.generic import TemplateView
 
 from moviespot import settings
 from moviespot.routers import router
@@ -27,4 +28,8 @@ urlpatterns = [
     path('api/', include(router.urls)),
     url(r'^api/login/refresh$', TokenRefreshView.as_view(), name='token_refresh'),
     url(r'^api/login$', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path("",
+        TemplateView.as_view(template_name="app.html"),
+        name="app",
+    ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
