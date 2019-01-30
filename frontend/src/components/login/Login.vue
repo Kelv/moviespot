@@ -41,9 +41,10 @@ export default {
       this.submit();
     },
     submit() {
+      var self = this
       this.login(this.credentials)
           .then(() => {
-            this.$router.push('/')
+            self.$router.push('/rental')
           })
           .catch(console.log)
     },

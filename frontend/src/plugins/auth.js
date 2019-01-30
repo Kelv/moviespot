@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import store from '../store/index'
-import router from '../router'
+import store from '@/store'
+import router from '@/router'
 
 export default {
   install(Vue, options) {
@@ -37,7 +37,7 @@ export default {
       .dispatch('refreshToken')
       .then(response => {
         this._storeToken(response.data)
-        // this._retry(request)
+        this._retry(request)
       })
       .catch(error => {
         console.log(error)
