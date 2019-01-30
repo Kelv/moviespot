@@ -20,15 +20,16 @@ from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from django.views.generic import TemplateView
 
+
 from moviespot import settings
 from moviespot.routers import router
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
     url(r'^api/login/refresh$', TokenRefreshView.as_view(), name='token_refresh'),
     url(r'^api/login$', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path("",
+    path('api/', include(router.urls)),
+    url(r'^.*$',
         TemplateView.as_view(template_name="app.html"),
         name="app",
     ),
