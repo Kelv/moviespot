@@ -32,7 +32,7 @@
                           font(size="4") {{rentDialogInfo.selectedMovie ? rentDialogInfo.selectedMovie.title : ""}}
                         v-flex(xs8).pr-1
                           v-menu(ref='rentDialogMenu', :close-on-content-click='false', v-model='rentDialog.menu', :nudge-right='40', :return-value.sync='rentDialogInfo.due_date', lazy, transition='scale-transition', offset-y, full-width, min-width='290px')
-                          v-text-field(slot='activator' v-model='rentDialogInfo.due_date' label='Select due date' prepend-icon='event' readonly)
+                            v-text-field(slot='activator' v-model='rentDialogInfo.due_date' label='Select due date' prepend-icon='event' readonly)
                             v-date-picker(v-model='rentDialogInfo.due_date' no-title scrollable)
                               v-spacer
                               v-btn(flat color='primary' @click='rentDialogMenu = false') Cancel
@@ -131,7 +131,7 @@ export default {
             address: this.rentDialogInfo.customer.address,
             phone: this.rentDialogInfo.customer.phone
           },
-          due_date: this.rentDialogInfo.due_date
+          due_date: new Date(this.$moment(this.rentDialogInfo.due_date, 'YYYY-MM-DD'))
         })
         .then(res => {
           this.rentDialogInfo.movie.in_stock_qty -= 1
