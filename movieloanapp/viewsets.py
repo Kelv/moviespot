@@ -53,18 +53,18 @@ class RentalViewSet(viewsets.ModelViewSet):
 			movie = Movie.objects.get(pk=request.data['movie'])
 			customer = None
 			try:
-				customer = Customer.objects.get(email=request.data['customer']['email'])
+				customer = Customer.objects.get(email=request.data['client']['email'])
 			except:
 				pass
 			if customer is None:
-				customer = Customer(email=request.data['customer']['email'],
-								first_name=request.data['customer']['first_name'],
-								last_name=request.data['customer']['last_name'],
-								address=request.data['customer']['address'],
-								phone=request.data['customer']['phone'],
-								gender=request.data['customer']['gender'])
+				customer = Customer(email=request.data['client']['email'],
+								first_name=request.data['client']['first_name'],
+								last_name=request.data['client']['last_name'],
+								address=request.data['client']['address'],
+								phone=request.data['client']['phone'],
+								gender=request.data['client']['gender'])
 				customer.save()
-			request.data['customer'] = customer.id
+			request.data['client'] = customer.id
 			if movie.in_stock_qty > 0:
 				res = super(viewsets.ModelViewSet, self).create(request)
 				if int(res.status_code / 100) == 2:

@@ -16,6 +16,8 @@ class ClientSerializer(serializers.ModelSerializer):
 
 
 class RentalSerializer(serializers.ModelSerializer):
+	movie = MovieSerializer()
+	client = ClientSerializer()
 	class Meta:
 		model = Rental
 		fields = '__all__'

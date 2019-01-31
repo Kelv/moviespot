@@ -6,7 +6,8 @@ const localStoragePlugin = store => {
       auth: state.auth,
       user: state.user,
       movies: state.movies,
-      clients: state.clients
+      clients: state.clients,
+      rentals: state.rentals
     }
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(syncedData));
@@ -14,7 +15,7 @@ const localStoragePlugin = store => {
     if (mutation.type === "CLEAR_ALL_DATA") {
       localStorage.removeItem(STORAGE_KEY)
     }
-  });
-};
+  })
+}
 
 export default [localStoragePlugin]

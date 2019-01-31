@@ -8,8 +8,8 @@ let syncedData = {
   },
   user: {},
   movies: [],
-  clients: []
-
+  clients: [],
+  rentals: []
 }
 
 if (localStorage.getItem(STORAGE_KEY)) {

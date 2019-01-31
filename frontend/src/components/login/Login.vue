@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   data() {
@@ -36,6 +36,16 @@ export default {
       credentials: {}
     };
   },
+  created(){
+    if(this.auth.isLoggedIn){
+      this.$router.push('/rentals')
+    }
+  },
+  computed: {
+    ...mapState({
+      auth: 'auth'
+    })
+  },
   methods: {
     enterPressed() {
       this.submit();
@@ -44,7 +54,7 @@ export default {
       var self = this
       this.login(this.credentials)
           .then(() => {
-            self.$router.push('/rental')
+            self.$router.push('/rentals')
           })
           .catch(console.log)
     },

@@ -15,6 +15,8 @@ export default {
   created(){
     if(!this.auth.isLoggedIn){
       this.$router.push('/login')
+    }else{
+      this.$router.push('/rentals')
     }
   },
   computed: {

@@ -10,6 +10,10 @@ export const UPDATE_MOVIES = (state, movies) => {
   state.movies = movies
 }
 
+export const UPDATE_RENTALS = (state, rentals) => {
+  state.rentals = rentals
+}
+
 export const UPDATE_CLIENTS = (state, clients) => {
   state.clients = clients
 }

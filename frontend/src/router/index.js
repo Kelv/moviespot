@@ -22,7 +22,7 @@ export default new Router({
       component: Home,
       children: [
         {
-          path: "/rental",
+          path: "/rentals",
           component: Rental
         }
       ]

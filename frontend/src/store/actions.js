@@ -30,6 +30,14 @@ export const requestClients = ({ commit, state }) => {
   return ClientService.getAll().then(clients => commit('UPDATE_CLIENTS', clients.data))
 }
 
+export const requestRentals = ({ commit, state }) => {
+  return RentalService.getAll().then(rentals => commit('UPDATE_RENTALS', rentals.data))
+}
+
 export const createRental = ({ commit, state }, rental) => {
   return RentalService.create(rental)
+}
+
+export const returnRental = ({ commit, state }, rentalId) => {
+  return RentalService.return(rentalId)
 }
