@@ -35,6 +35,9 @@ python manage.py migrate
 # Create account with your info
 python manage.py createsuperuser
 
+# Collect static files
+python manage.py collectstatic
+
 # Run app
 python manage.py runserver
 ```
