@@ -40,6 +40,13 @@ python manage.py collectstatic
 
 # Run app
 python manage.py runserver
+
+# In other console
+cd frontend
+npm install
+npm run serve
+
+# Go to 127.0.0.1:8000
 ```
 
 [Django]: <https://www.djangoproject.com>
